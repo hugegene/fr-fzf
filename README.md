@@ -1,6 +1,6 @@
 # fr-fzf
 
-Find code, copy code, paste into Claude — without leaving your terminal.
+Pair Claude Code with a real terminal-native file browser and grep.
 
 <!-- TODO: record demo with asciinema or kap, save to docs/demo.gif, then uncomment -->
 <!-- ![demo](docs/demo.gif) -->
