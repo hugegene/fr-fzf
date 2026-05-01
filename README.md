@@ -1,10 +1,21 @@
 # fr-fzf
 
-Interactive file browser and recursive grep for the terminal, both built on [fzf](https://github.com/junegunn/fzf).
+Find code, copy code, paste into Claude — without leaving your terminal.
+
+<!-- TODO: record demo with asciinema or kap, save to docs/demo.gif, then uncomment -->
+<!-- ![demo](docs/demo.gif) -->
 
 - `fr` — browse files/directories with live preview, hop between dirs, edit a file, copy a path.
 - `findtext` — recursive grep with live preview of the matched line in context.
 - `fr` can pivot into `findtext` (ctrl-f) without leaving the loop.
+
+## Why?
+
+You opened a terminal for Claude Code. Then you alt-tabbed to an IDE to find a file. Then you alt-tabbed back to paste it. `fr-fzf` removes the round trip.
+
+- **Made for Claude Code workflows.** `findtext`'s ctrl-g copies `<absolute_path>` + ±10 lines around the match to your clipboard — exactly the shape you paste into a Claude prompt. One keystroke, no manual copy.
+- **Discard the IDE.** If your editor already lives in the terminal (micro, vim, helix, nvim), you don't need an Electron file browser too. `fr` is fzf-fast with live previews; `findtext` is instant grep with context. One buffer, full keyboard.
+- **Two keystrokes from anywhere on disk to your clipboard.** `fr` → ctrl-f → type pattern → ctrl-g. Done.
 
 ## Dependencies
 
