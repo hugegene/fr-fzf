@@ -1,0 +1,14 @@
+#!/bin/zsh
+# Usage: findtext <pattern> [path]
+# Pattern is required; path defaults to current directory.
+
+[ -z "$1" ] && { echo "usage: findtext <pattern> [path]" >&2; exit 1; }
+
+grep -rn "$1" "${2:-.}" | sed 's|^\./||' | fzf \
+  --delimiter : \
+  --preview-window=right:60%:wrap \
+  --header "ENTER: Select | CTRL-E: Open in Micro | CTRL-G: Copy Code | CTRL-\\\\: Toggle Preview Size | ESC: Quit" \
+  --preview 'L={2}; S=$((L>5?L-5:1)); bat --color=always --line-range "$S:+15" {1} --highlight-line {2}' \
+  --bind 'ctrl-e:execute(micro +{2} {1})' \
+  --bind 'ctrl-g:execute-silent(L={2}; S=$((L>5?L-5:1)); E=$((L+10)); p={1}; case "$p" in /*) abs="$p" ;; *) abs="$PWD/$p" ;; esac; { printf "%s\n" "$abs"; sed -n "${S},${E}p" {1}; } | pbcopy)' \
+  --bind 'ctrl-\:change-preview-window(99%|hidden|)'
