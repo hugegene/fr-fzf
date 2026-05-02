@@ -16,7 +16,7 @@ fr() {
       --header "ENTER: Go In/Edit | CTRL-E: CD Here | CTRL-F: Grep Here | CTRL-G: Copy Path | CTRL-\\\\: Toggle Preview Size | ESC: Quit" \
       --bind 'ctrl-g:execute-silent(p={}; p=${p#./}; printf "%s" "$PWD/$p" | pbcopy)' \
       --bind 'ctrl-e:execute-silent(echo __CD__ > /tmp/fr_action; echo -n {} > /tmp/fr_item)+abort' \
-      --bind 'ctrl-f:execute(( trap "exit 0" INT; printf "grep> "; read q < /dev/tty || exit 0; [ -n "$q" ] && findtext "$q" . ))' \
+      --bind 'ctrl-f:execute(findtext-live .)' \
       --bind 'ctrl-\:change-preview-window(99%|hidden|)' \
       --expect=enter
     )
