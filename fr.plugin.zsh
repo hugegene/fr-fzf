@@ -15,7 +15,7 @@ fr() {
       --delimiter / --with-nth -1 \
       --preview "cd ${(q)current_dir} && if [ -d {} ]; then tree -C {} | head -200; else bat --color=always --style=numbers --line-range :500 {}; fi" \
       --preview-window=wrap \
-      --header "ENTER: Go In/Edit | CTRL-E: CD Here | CTRL-F: Grep Here | CTRL-G: Copy Path | CTRL-\\\\: Toggle Preview Size | ESC: Quit" \
+      --header "ENTER: Go In/Edit | CTRL-E: CD Here | CTRL-F: Findtext Here | CTRL-G: Copy Path | CTRL-\\\\: Toggle Preview Size | ESC: Quit" \
       --bind "ctrl-g:execute-silent(cd ${(q)current_dir} && p={}; p=\${p#./}; printf '%s' \"\$PWD/\$p\" | pbcopy)" \
       --bind 'ctrl-e:execute-silent(echo __CD__ > /tmp/fr_action; echo -n {} > /tmp/fr_item)+abort' \
       --bind "ctrl-f:execute(cd ${(q)current_dir} && findtext .)" \
