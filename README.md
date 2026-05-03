@@ -38,7 +38,7 @@ Clipboard: `pbcopy` (macOS). On Linux replace with `xclip -selection clipboard` 
 ### oh-my-zsh
 
 ```sh
-git clone https://github.com/eugene/fr-fzf ~/.oh-my-zsh/custom/plugins/fr-fzf
+git clone https://github.com/hugegene/fr-fzf ~/.oh-my-zsh/custom/plugins/fr-fzf
 ```
 
 Then add `fr-fzf` to the `plugins=(...)` line in `~/.zshrc`.
@@ -46,19 +46,19 @@ Then add `fr-fzf` to the `plugins=(...)` line in `~/.zshrc`.
 ### zinit
 
 ```sh
-zinit load eugene/fr-fzf
+zinit load hugegene/fr-fzf
 ```
 
 ### antigen
 
 ```sh
-antigen bundle eugene/fr-fzf
+antigen bundle hugegene/fr-fzf
 ```
 
 ### Manual
 
 ```sh
-git clone https://github.com/eugene/fr-fzf ~/.fr-fzf
+git clone https://github.com/hugegene/fr-fzf ~/.fr-fzf
 echo 'source ~/.fr-fzf/fr.plugin.zsh' >> ~/.zshrc
 ```
 

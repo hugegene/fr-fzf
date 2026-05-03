@@ -1,5 +1,5 @@
 # fr-fzf — interactive file browser + grep, both powered by fzf.
-# https://github.com/eugene/fr-fzf
+# https://github.com/hugegene/fr-fzf
 
 # Make bundled scripts (findtext) callable from inside fr's binds.
 FR_FZF_DIR="${0:A:h}"
