@@ -1,12 +1,11 @@
 # fr-fzf
 
-Pair Claude Code with a real terminal-native file browser and grep.
+Pair Claude Code with a real terminal-native file browser and find text.
 
-<!-- TODO: record demo with asciinema or kap, save to docs/demo.gif, then uncomment -->
-<!-- ![demo](docs/demo.gif) -->
+![demo](docs/demo.gif)
 
-- `fr` — browse files/directories with live preview, hop between dirs, edit a file, copy a path.
-- `findtext` — recursive grep with live preview of the matched line in context.
+- `fr` — browse files/directories with live preview, cd between dirs, edit a file, copy a path.
+- `findtext` — live recursive grep: type the pattern, results update per keystroke, with match-aware preview, and copy code snippet.
 - `fr` can pivot into `findtext` (ctrl-f) without leaving the loop.
 
 ## Why?
@@ -23,14 +22,14 @@ Required:
 
 - [`fzf`](https://github.com/junegunn/fzf)
 - [`bat`](https://github.com/sharkdp/bat) — syntax-highlighted previews
+- [`tree`](https://formulae.brew.sh/formula/tree) — directory previews in fr
+- [`micro`](https://github.com/zyedidia/micro) — opens files from `fr` (enter) and matches from `findtext` (enter)
 - `grep` — POSIX, present everywhere
 - `zsh` — both `fr` and `findtext` use zsh
 
 Optional (graceful degradation):
 
 - [`fd`](https://github.com/sharkdp/fd) — faster than `find`; fr falls back to `find` if missing
-- [`tree`](https://formulae.brew.sh/formula/tree) — directory previews in fr
-- [`micro`](https://github.com/zyedidia/micro) — used by ctrl-e in `findtext`
 
 Clipboard: `pbcopy` (macOS). On Linux replace with `xclip -selection clipboard` or `wl-copy` — see [Portability](#portability).
 
@@ -75,7 +74,7 @@ Run `fr` in any directory.
 | --- | --- |
 | `Enter` | Enter directory / open file in `micro` |
 | `Ctrl-E` | `cd` into the highlighted directory and exit fzf |
-| `Ctrl-F` | Prompt for a grep pattern and launch `findtext` here |
+| `Ctrl-F` | Open `findtext` in the current directory |
 | `Ctrl-G` | Copy absolute path to clipboard |
 | `Ctrl-\` | Cycle preview window: 99% width / hidden / default |
 | `Esc` | Quit |
@@ -85,18 +84,21 @@ The first entry is always `..` so you can navigate up.
 ### `findtext`
 
 ```sh
-findtext <pattern> [path]
+findtext [path]
 ```
 
-Path defaults to `.`.
+Path defaults to `.`. Type your pattern in the fzf query line — results update per keystroke.
 
 | Key | Action |
 | --- | --- |
-| `Enter` | Default fzf select |
-| `Ctrl-E` | Open match in `micro` at the matched line |
+| `Enter` | Open match in `micro` at the matched line |
 | `Ctrl-G` | Copy absolute path + ±10 lines around the match to clipboard |
 | `Ctrl-\` | Cycle preview window |
 | `Esc` | Quit |
+
+### Inside `micro`
+
+The plugin opens files in `micro` with mouse reporting on, so terminal-native selection (drag with mouse, then `Cmd-C` on macOS) is hijacked by micro. To copy from inside micro: select text with `Shift`+arrow keys (or `Alt`+drag on macOS to bypass mouse reporting), then **`Ctrl-C`** — that's micro's copy keybind, not the macOS clipboard shortcut. Paste with `Ctrl-V`.
 
 ## Portability
 
@@ -106,6 +108,18 @@ The bundled binds use `pbcopy` (macOS-only). To run on Linux, edit `fr.plugin.zs
 - `wl-copy` (Wayland)
 
 A future version may auto-detect.
+
+## Troubleshooting
+
+### Ubuntu/Debian: `bat: command not found`
+
+`apt install bat` installs the binary as **`batcat`** (not `bat`) to avoid a naming conflict with another package. The plugin calls `bat`, so symlink it:
+
+```sh
+mkdir -p ~/.local/bin && ln -s /usr/bin/batcat ~/.local/bin/bat
+```
+
+Make sure `~/.local/bin` is on your `$PATH`. Alternatively, install the `.deb` from [bat's GitHub releases](https://github.com/sharkdp/bat/releases) — that one ships as `bat` directly.
 
 ## License
 
