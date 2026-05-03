@@ -98,7 +98,12 @@ Path defaults to `.`. Type your pattern in the fzf query line — results update
 
 ### Inside `micro`
 
-The plugin opens files in `micro` with mouse reporting on, so terminal-native selection (drag with mouse, then `Cmd-C` on macOS) is hijacked by micro. To copy from inside micro: select text with `Shift`+arrow keys (or `Alt`+drag on macOS to bypass mouse reporting), then **`Ctrl-C`** — that's micro's copy keybind, not the macOS clipboard shortcut. Paste with `Ctrl-V`.
+| Key | Action |
+| --- | --- |
+| `Ctrl-C` | Copy |
+| `Ctrl-V` | Paste |
+| `Ctrl-S` | Save |
+| `Ctrl-Q` | Quit |
 
 ## Portability
 
