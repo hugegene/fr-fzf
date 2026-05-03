@@ -37,6 +37,10 @@ Sleep 4s
 Type "fr.plug"
 Sleep 4s
 
+Ctrl+\
+Ctrl+\
+Sleep 4s
+
 # 3. Hit ctrl-f to open the nested live-grep picker.
 Ctrl+f
 Sleep 500ms
@@ -47,8 +51,11 @@ Sleep 4s
 
 # 5. Arrow down a couple of matches to show preview tracking.
 Up
-Sleep 500ms
 Up
+Sleep 4s
+
+Ctrl+\
+Ctrl+\
 Sleep 4s
 
 # 6. Enter to open the match in micro at the exact line.
